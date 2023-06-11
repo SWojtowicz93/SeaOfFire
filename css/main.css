@@ -1,0 +1,862 @@
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.white-block {
+  position: absolute;
+  height: 40px;
+  width: 60%;
+  background-color: #232323;
+}
+.white-block-left {
+  bottom: 0;
+  left: -50px;
+  transform: skew(45deg);
+}
+.white-block-right {
+  top: 0;
+  right: -50px;
+  transform: skew(45deg);
+}
+
+.btn-special-animation {
+  position: relative;
+  transition: background-color 0.3s;
+  overflow: hidden;
+  z-index: 0;
+}
+.btn-special-animation::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s;
+  z-index: -1;
+}
+.btn-special-animation:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.section-heading {
+  position: relative;
+  margin-bottom: 2em;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  color: #b59f0f;
+  letter-spacing: 2px;
+}
+
+.section-padding {
+  padding: 6em 2em;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 3.6rem;
+  }
+  .section-padding {
+    padding: 8em 2em;
+  }
+}
+@media (min-width: 992px) {
+  .section-heading {
+    font-size: 4.8rem;
+  }
+  .section-padding {
+    padding: 10em 2em;
+  }
+}
+@keyframes burning {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 0, 0, 0.1), 0 0 40px rgba(255, 0, 0, 0.1);
+  }
+  30% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.7);
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 0, 0, 0.1), 0 0 40px rgba(255, 0, 0, 0.1);
+  }
+}
+@font-face {
+  font-family: TresureHunt;
+  src: url("../img/Treasurehunt_PERSONAL_USE_ONLY.otf") format("truetype");
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6rem;
+  background-color: #232323;
+}
+
+.burger-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1em;
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  z-index: 1000;
+}
+.burger-btn:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+.burger-btn:hover .burger-btn__bars::after,
+.burger-btn:hover .burger-btn__bars::before {
+  width: 100%;
+}
+.burger-btn__box {
+  position: relative;
+  width: 40px;
+  height: 30px;
+}
+.burger-btn__bars, .burger-btn__bars::after, .burger-btn__bars::before {
+  position: absolute;
+  right: 0;
+  height: 3px;
+  content: "";
+  background-color: #b59f0f;
+  transition: width 0.3s;
+}
+.burger-btn__bars {
+  width: 100%;
+}
+.burger-btn__bars::after {
+  top: 13px;
+  width: 60%;
+}
+.burger-btn__bars::before {
+  top: 27px;
+  width: 30%;
+  transition-delay: 0.1s;
+}
+
+.social-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 0.4em;
+  font-size: 3.6rem;
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  z-index: 1000;
+  color: #b59f0f;
+  transition: transform 0.3s;
+}
+.social-btn__fb {
+  top: 20px;
+}
+.social-btn__tw {
+  top: 70px;
+}
+.social-btn__ds {
+  top: 120px;
+}
+.social-btn:hover {
+  transform: scale(1.3);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  transform: translateX(100%);
+  transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  z-index: 100;
+}
+.nav::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../img/wooden-820042_1920.jpg");
+  filter: brightness(70%) contrast(80%) sepia(50%);
+}
+.nav--active {
+  transform: translateX(0);
+}
+.nav__item {
+  position: relative;
+  display: block;
+  margin: 0.5em 0;
+  padding: 0.2em 1em;
+  text-align: center;
+  letter-spacing: 0.2em;
+  font-size: 2.8rem; /* Kolor tekstu */
+  font-weight: 700;
+  color: #b99c0a;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  z-index: 110;
+  transition: color 1s;
+  transition: text-shadow 1.5s;
+}
+.nav__item:hover {
+  text-shadow: 0 0 8px rgba(131, 7, 7, 0.7), 0 0 14px rgba(170, 2, 2, 0.7), 0 0 16px rgba(96, 4, 4, 0.7);
+  color: #4c3109;
+}
+.nav__item::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transform: scaleX(0);
+  background-color: #291b17;
+  transition: transform 1s, box-shadow 1.5s;
+  content: "";
+}
+.nav__item:hover::before {
+  transform: scaleX(1);
+  background-color: #4c0909;
+  box-shadow: 0 0 4px rgba(131, 7, 7, 0.7), 0 0 7px rgba(170, 2, 2, 0.7), 0 0 9px rgba(96, 4, 4, 0.7);
+}
+
+@keyframes navItemsAnimation {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.nav-items-animation {
+  animation: navItemsAnimation 0.5s both;
+}
+
+.black-bars-color,
+.black-bars-color::after,
+.black-bars-color::before {
+  background-color: #cc165f;
+}
+
+.black-social-color {
+  color: #cc165f;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+  height: 75vh;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(45deg, rgba(16, 1, 1, 0.3), rgba(13, 12, 1, 0.3)), url("../img/fantasy-4257828_1920.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-attachment: scroll;
+}
+.header__heading {
+  font-family: "TresureHunt";
+  background: linear-gradient(45deg, #ffe600, #ffd500 40%, #ffdd00 60%, #ffa200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px #a92106;
+}
+.header__text {
+  padding: 0.4em;
+  color: #b59f0f;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.header__btn {
+  font-family: "TresureHunt";
+  background: linear-gradient(45deg, #ffe600, #ffd500 40%, #ffdd00 60%, #ffa200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+  font-weight: bold;
+  transition: transform 0.3s;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px #a92106;
+}
+.header__btn:hover {
+  transform: scale(1.1);
+}
+
+.repair-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__box {
+  text-align: center;
+  width: 60%;
+  margin: 2em 0;
+  color: #cc165f;
+}
+.about__title {
+  color: #b59f0f;
+  margin-bottom: 0.5em;
+}
+.about__text {
+  font-size: 1.4rem;
+}
+
+.hero-img {
+  position: relative;
+  padding: 10em 2em;
+  background-image: linear-gradient(45deg, rgba(16, 1, 1, 0.3), rgba(13, 12, 1, 0.3)), url("../img/eye.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+  color: #b59f0f;
+  overflow: hidden;
+}
+.hero-img__title {
+  font-family: "Dancing Script", cursive;
+  margin-bottom: 0.5em;
+  font-size: 2.8rem;
+}
+.hero-img-container-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 3.6rem;
+  width: 90vw;
+  height: 2.4em;
+}
+.hero-img-container-text__text {
+  color: #b59f0f;
+  position: absolute;
+  opacity: 0;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  animation: cinematicInOut 20s ease-in-out infinite;
+  animation-delay: 5s;
+}
+.hero-img-container-text__text:nth-child(2) {
+  animation-delay: 11.5s;
+}
+.hero-img-container-text__text:nth-child(3) {
+  animation-delay: 18s;
+}
+
+@keyframes cinematicInOut {
+  0% {
+    text-shadow: 0 0 1em #b59f0f;
+    opacity: 0;
+    margin-left: -0.5em;
+  }
+  20% {
+    text-shadow: 0 0 0 #b59f0f;
+    opacity: 1;
+    margin-left: 0;
+  }
+  40% {
+    text-shadow: 0 0 0 #b59f0f;
+    opacity: 0;
+    margin-left: 0;
+  }
+  100% {
+    text-shadow: 0 0 1em #b59f0f;
+    opacity: 0;
+    margin-left: 0;
+  }
+}
+hr {
+  border: none;
+  height: 2px;
+  background-image: linear-gradient(45deg, rgb(127, 107, 0), rgb(181, 137, 0));
+  background-clip: content-box;
+}
+
+.game__card {
+  position: relative;
+  margin: 1em 0;
+  height: 450px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.game__card-img {
+  padding: 2em;
+  height: 100%;
+  border-radius: 8px;
+  background-size: cover;
+  transition: transform 1s, opacity 1s;
+}
+.game__card-img--first {
+  background-image: linear-gradient(45deg, rgba(127, 107, 0, 0.55), rgb(181, 137, 1)), url("../img/pirat-portret.jpg");
+}
+.game__card-img--second {
+  background-image: linear-gradient(45deg, rgba(93, 23, 22, 0.55), rgba(119, 5, 5, 0.55)), url("../img/dragon-portret.jpg");
+}
+.game__card-img-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.8rem;
+}
+.game__card-img-info {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 1.8rem;
+}
+.game__card-img-info i {
+  margin-right: 0.3em;
+}
+
+.guild-information-box {
+  width: 100%;
+  overflow: hidden;
+  transition: width 1s ease;
+}
+
+.guild-information-box.activetext {
+  width: 100%;
+}
+
+.guild-information-box__pirates,
+.guild-information-box__dragons {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.game__card-img--first.activetext ~ .guild-information-box .guild-information-box__pirates,
+.game__card-img--second.activetext ~ .guild-information-box .guild-information-box__dragons {
+  opacity: 1;
+}
+
+/* Style dla .guild-information-box__pirates */
+.guild-information-box__pirates {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Style dla .guild-information-box__dragons */
+.guild-information-box__dragons {
+  width: 70%;
+  height: auto;
+  background-image: url("../img/a empty bulleti 1-PhotoRoom-PhotoRoom (1).png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  text-align: center;
+  font-size: 3.8rem;
+  font-weight: 900;
+  text-shadow: 0 0 2px rgba(206, 39, 13, 0.2);
+  animation: burning 8s ease-in-out infinite;
+}
+
+.offers {
+  position: relative;
+  background-image: linear-gradient(45deg, rgba(16, 1, 1, 0.3), rgba(13, 12, 1, 0.3)), url("../img/map1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+.offers .section-heading {
+  color: #b59f0f;
+}
+.offers__option {
+  margin: 1em 0;
+  box-shadow: 5px 5px 10px rgba(46, 46, 46, 0.18);
+  width: 100%;
+  overflow: hidden;
+}
+.offers__option-info {
+  padding: 2em;
+  background-image: linear-gradient(45deg, rgba(16, 1, 1, 0.3), rgba(13, 12, 1, 0.3));
+  border-radius: 1em;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+.offers__option-heading {
+  margin-bottom: 0.5em;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #b59f0f;
+}
+.offers__option-text {
+  margin-bottom: 0.5em;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .team.section-padding {
+    padding: 6em 0;
+  }
+}
+.team__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2em;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px rgba(46, 46, 46, 0.18);
+  transition: transform 0.3s;
+}
+.team__box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team__box:hover {
+  transform: scale(0.95);
+}
+.team__box-img img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.team__box-quote {
+  margin-bottom: 1em;
+  font-size: 3rem;
+  color: #b59f0f;
+}
+.team__box-text {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #cc165f;
+  width: 100%;
+}
+
+.strongtext {
+  display: block;
+  text-align: center;
+  padding-bottom: 1em;
+  color: #b59f0f;
+}
+
+.newsletter {
+  position: relative;
+  background-image: linear-gradient(45deg, rgba(32, 2, 2, 0.945), rgba(119, 5, 5, 0.55)), url("../img/map1.jpg");
+  overflow: hidden;
+}
+.newsletter .white-block-left {
+  background-color: #2e2e2e;
+}
+.newsletter__form, .newsletter__form-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.newsletter__form-label {
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+.newsletter__form-input {
+  margin-bottom: 2em;
+  background-color: rgba(147, 120, 10, 0.329);
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  width: 100%;
+}
+.newsletter__form-btn {
+  align-self: flex-end;
+  padding: 1em;
+  width: 100%;
+  max-width: 300px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  background-color: #b59f0f;
+  cursor: pointer;
+}
+.newsletter__form-btn::before {
+  background-color: #cc165f;
+}
+
+.candle-container {
+  position: relative;
+}
+
+.candle-box {
+  position: absolute;
+  bottom: -20%;
+  right: 20%;
+}
+
+.contact {
+  position: relative;
+  background-color: #eee;
+  overflow: hidden;
+}
+.contact .white-block-left {
+  background-color: #2e2e2e;
+}
+.contact__form, .contact__form-top {
+  display: flex;
+  flex-direction: column;
+}
+.contact__form-label {
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+.contact__form-input {
+  margin-bottom: 2em;
+  background-color: rgba(147, 120, 10, 0.329);
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+}
+.contact__form-textarea {
+  margin-bottom: 2em;
+  background-color: rgba(147, 120, 10, 0.329);
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+.contact__form-btn {
+  align-self: flex-end;
+  padding: 1em;
+  width: 100%;
+  max-width: 300px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  background-color: #b59f0f;
+  cursor: pointer;
+}
+.contact__form-btn::before {
+  background-color: #cc165f;
+}
+
+.footer {
+  color: #fff;
+  background-color: #2e2e2e;
+}
+.footer .wrapper {
+  padding: 6em 2em 2em;
+}
+.footer__box {
+  font-size: 1.4rem;
+}
+.footer__box-desktop {
+  display: none;
+}
+.footer__box-title {
+  margin-bottom: 1em;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.footer__box-social {
+  margin: 2em 0 1em;
+}
+.footer__box-link {
+  padding: 0 0.3em;
+  font-size: 3.6rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer__box-link:first-child {
+  padding-left: 0;
+}
+.footer__box-link:hover {
+  color: #eee;
+}
+.footer__bottom-text {
+  padding: 2em;
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  .about__box {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .offers__option {
+    display: flex;
+    margin: 2em 0;
+    width: 100%;
+  }
+  .offers__option-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .offers__option-heading {
+    margin-bottom: 0.5em;
+    font-size: 3.6rem;
+  }
+  .offers__option-btn {
+    padding: 1em;
+  }
+}
+@media (min-width: 768px) {
+  .white-block {
+    height: 50px;
+    width: 45%;
+  }
+  .header__heading {
+    font-size: 6.6rem;
+  }
+  .header__text {
+    font-size: 2.2rem;
+  }
+  .header__btn {
+    font-size: 4rem;
+  }
+  .about__text {
+    font-size: 1.8rem;
+  }
+  .hero-img {
+    padding: 30rem 2em;
+  }
+  .hero-img hr {
+    margin: 0 auto;
+    width: 70%;
+  }
+  .hero-img__text {
+    font-size: 2.2rem;
+  }
+  .game__cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .game__card {
+    margin: 1em;
+    width: 45%;
+  }
+  .footer__boxes {
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer__box-desktop {
+    display: block;
+  }
+  .footer__box {
+    margin: 0 2em;
+    width: 25%;
+  }
+  .footer__box:first-child {
+    width: 50%;
+  }
+  .footer__box-title {
+    font-size: 2.4rem;
+  }
+  .footer__box-list {
+    list-style: none;
+  }
+  .footer__box-list-item {
+    margin-bottom: 1em;
+  }
+  .footer__box-list-item a {
+    color: #eee;
+    text-decoration: none;
+  }
+}
+@media (min-width: 992px) {
+  .burger-btn {
+    top: 50px;
+    right: 50px;
+  }
+  .header {
+    background-image: url("../img/fantasy-4257828_1920.jpg");
+  }
+  .header__heading {
+    font-size: 10rem;
+  }
+  .nav__item {
+    font-size: 4.8rem;
+  }
+  .about__box {
+    margin: 1.5em 0;
+  }
+  .about__box-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 2.5em;
+  }
+  .about__title {
+    font-size: 3.6rem;
+  }
+  .about__text {
+    font-size: 2.2rem;
+  }
+  .hero-img {
+    padding: 40rem 2em;
+    background-image: linear-gradient(45deg, rgba(93, 23, 22, 0.55), rgba(81, 0, 0, 0.989)), url("../img/eye.jpg");
+  }
+  .hero-img__title {
+    font-size: 7.2rem;
+  }
+  .hero-img hr {
+    width: 60%;
+    max-width: 900px;
+  }
+  .offers {
+    background-image: linear-gradient(45deg, rgba(93, 23, 22, 0.55), rgba(119, 5, 5, 0.55)), url("../img/map2.png");
+  }
+  .offers__option-img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 300px;
+  }
+  .offers__option-text {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1100px) {
+  .game__card {
+    width: 30%;
+  }
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,993 @@
+@import './colors';
+@import './components';
+@import './mixins';
+@font-face {
+    font-family: TresureHunt;
+    src: url('../img/Treasurehunt_PERSONAL_USE_ONLY.otf') format('truetype');
+  }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+    background-color: #232323;
+}
+
+// NAV
+.burger-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1em;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    z-index: 1000;
+
+    &:focus {
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 8px;
+    }
+
+    &:hover {
+
+        .burger-btn__bars::after,
+        .burger-btn__bars::before {
+            width: 100%;
+        }
+    }
+
+    &__box {
+        position: relative;
+        width: 40px;
+        height: 30px;
+    }
+
+    &__bars,
+    &__bars::after,
+    &__bars::before {
+        @include burgerBtn;
+    }
+
+    &__bars {
+        width: 100%;
+
+        &::after {
+            top: 13px;
+            width: 60%;
+        }
+
+        &::before {
+            top: 27px;
+            width: 30%;
+            transition-delay: .1s;
+        }
+    }
+}
+.social-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 0.4em;
+    font-size: 3.6rem;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    z-index: 1000;
+    color: $main-color;
+
+    &__fb{
+        
+    top: 20px;
+    }
+    &__tw{
+
+    top: 70px;
+    }
+
+    &__ds{
+        top: 120px;
+    }
+    
+    transition: transform .3s;
+        &:hover {
+            transform: scale(1.3);
+        }
+}
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    transform: translateX(100%);
+    transition: .5s cubic-bezier(0.65, 0.05, 0.36, 1);
+    z-index: 100;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("../img/wooden-820042_1920.jpg");
+        filter: brightness(70%) contrast(80%) sepia(50%);
+      }
+
+    &--active {
+        transform: translateX(0);
+    }
+
+    &__item {
+        position: relative;
+        display: block;
+        margin: 0.5em 0;
+        padding: 0.2em 1em;
+        text-align: center;
+        letter-spacing: 0.2em;
+        font-size: 2.8rem; /* Kolor tekstu */
+        font-weight: 700;
+        color: #b99c0a;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        z-index: 110;
+        transition: color 1s;
+        transition: text-shadow 1.5s;
+        
+        &:hover {
+            text-shadow: 0 0 8px rgba(131, 7, 7, 0.7), 0 0 14px rgba(170, 2, 2, 0.7), 0 0 16px rgba(96, 4, 4, 0.7);
+            color: #4c3109;
+        }
+
+        &::before {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            transform: scaleX(0);
+            background-color: #291b17;
+            transition: transform 1s, box-shadow 1.5s;
+            content: '';
+        }
+
+        &:hover::before {
+            transform: scaleX(1);
+            background-color: #4c0909;
+            box-shadow: 0 0 4px rgba(131, 7, 7, 0.7), 0 0 7px rgba(170, 2, 2, 0.7), 0 0 9px rgba(96, 4, 4, 0.7);
+        }
+    }
+}
+@keyframes navItemsAnimation {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.nav-items-animation {
+    animation: navItemsAnimation .5s both;
+}
+
+
+.black-bars-color,
+.black-bars-color::after,
+.black-bars-color::before {
+    background-color: $secondary-color;
+}
+.black-social-color{
+
+    color: $secondary-color;
+}
+
+// HEADER
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em;
+    height: 75vh;
+    text-align: center;
+    color: $pure-white;
+    @include heroImages('../img/fantasy-4257828_1920.jpg');
+    background-attachment: scroll;
+
+    &__heading {
+        font-family: 'TresureHunt';
+        background: linear-gradient(45deg, #ffe600, #ffd500 40%, #ffdd00 60%, #ffa200);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 60px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px #a92106;
+        
+        // animation: burning 8s ease-in-out infinite;
+            
+    }
+
+    &__text {
+        padding: .4em;
+        color: $main-color;
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    &__btn {
+        font-family: 'TresureHunt';
+        background: linear-gradient(45deg, #ffe600, #ffd500 40%, #ffdd00 60%, #ffa200);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 60px;
+        font-weight: bold;
+        transition: transform .3s;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px #a92106;
+            &:hover {
+                transform: scale(1.1);
+            }
+      }
+      //     transition: transform .3s;
+
+}
+
+
+// MAIN
+// ABOUT US SECTION
+.repair-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.about {
+    &__box {
+        text-align: center;
+        width: 60%;
+        margin: 2em 0;
+        color:$secondary-color;
+    }
+
+    // &__img {
+    //     width: 100%;
+    //     margin-bottom: 1em;
+    // }
+
+    &__title {
+        color: $main-color;
+        margin-bottom: 0.5em;
+    }
+
+    &__text {
+        font-size: 1.4rem;
+    }
+}
+
+// HERO-IMG
+.hero-img {
+    position: relative;
+    padding: 10em 2em;
+    @include heroImages('../img/eye.jpg');
+    text-align: center;
+    color: $main-color;
+    overflow: hidden;
+
+    &__title {
+        font-family: 'Dancing Script', cursive;
+        margin-bottom: 0.5em;
+        font-size: 2.8rem;
+    }
+    &-container-text{
+        display:flex;
+        justify-content:center; 
+        align-items:center;
+        flex-wrap:wrap;
+        font-size: 3.6rem;
+        width: 90vw;
+        height: 2.4em;
+        &__text {
+            color:$main-color; // text shadow does all the work
+            position:absolute;
+            opacity:0;
+            margin-top:-.5em;
+            margin-left:-.5em;
+            animation: cinematicInOut 20s ease-in-out infinite;
+            animation-delay:5s;
+          }
+          &__text:nth-child(2) {
+            animation-delay:11.5s;
+          }
+          &__text:nth-child(3) {
+            animation-delay:18s;
+          }
+        }
+      
+}
+  
+@keyframes cinematicInOut {
+    0% {
+        text-shadow: 0 0 1em $main-color;
+        opacity: 0;
+        margin-left: -0.5em;
+    }
+    20% {
+        text-shadow: 0 0 0 $main-color;
+        opacity: 1;
+        margin-left: 0;
+    }
+    40% {
+        text-shadow: 0 0 0 $main-color;
+        opacity: 0;
+        margin-left: 0;
+    }
+    100% {
+        text-shadow: 0 0 1em $main-color;
+        opacity: 0;
+        margin-left: 0;
+    }
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-image: $gold-gradient-solid;
+    background-clip: content-box;
+}
+// game
+.game {
+    &__card {
+        position: relative;
+        margin: 1em 0;
+        height: 450px;
+        color: $pure-white;
+        text-align: center;
+        cursor: pointer;
+
+        &-img {
+            padding: 2em;
+            height: 100%;
+            border-radius: 8px;
+            background-size: cover;
+            transition: transform 1s, opacity 1s;
+
+            &--first {
+                background-image: $light-gold-gradient, url('../img/pirat-portret.jpg');
+            }
+
+            &--second {
+                background-image: $light-red-gradient, url('../img/dragon-portret.jpg');
+            }
+
+            &-title {
+                font-family: 'Dancing Script', cursive;
+                font-size: 2.8rem;
+            }
+
+            &-info {
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                font-size: 1.8rem;
+
+                i {
+                    margin-right: 0.3em;
+                }
+            }
+        }
+
+    }
+}
+
+// .guild-information-box{
+//     background-color: #fff;
+//     display: flex;
+//     height: 0;
+//     transition: width 1s ease;
+    
+//     &--clicked{
+//         transition: width 1s ease;
+//         height: 100%;
+//         transition: width 1s ease;
+//     }
+    
+// }
+
+.guild-information-box {
+    width: 100%;
+    overflow: hidden;
+    transition: width 1s ease;
+  }
+  
+  .guild-information-box.activetext {
+    width: 100%;
+  }
+  
+  .guild-information-box__pirates,
+  .guild-information-box__dragons {
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+  
+  .game__card-img--first.activetext ~ .guild-information-box .guild-information-box__pirates,
+  .game__card-img--second.activetext ~ .guild-information-box .guild-information-box__dragons {
+    opacity: 1;
+  }
+  
+  /* Style dla .guild-information-box__pirates */
+  .guild-information-box__pirates {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Style dla .guild-information-box__dragons */
+  .guild-information-box__dragons {
+    // background-color: #e6e6e6;
+    // border: 2px dashed #666;
+    width: 70%;
+    height: auto;
+    background-image: url('../img/a\ empty\ bulleti\ 1-PhotoRoom-PhotoRoom\ \(1\).png');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: contain;
+    text-align: center;
+    font-size: 3.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 2px rgba(206, 39, 13, 0.2);
+    
+    animation: burning 8s ease-in-out infinite;
+
+  }
+// OFFERS
+.offers {
+    position: relative;
+    @include heroImages('../img/map1.jpg');
+    overflow: hidden;
+
+    .section-heading {
+        color: $main-color;
+    }
+
+    &__option {
+        margin: 1em 0;
+        box-shadow: 5px 5px 10px rgba(46, 46, 46, 0.18);
+        width: 100%;
+        // background-color: $pure-white;
+        overflow: hidden;
+
+        // &-img {
+        //     width: 100%;
+        //     transition: transform .3s;
+
+        //     &:hover {
+        //         transform: scale(1.1);
+        //     }
+        // }
+
+        &-info {
+            padding: 2em;
+            background-image: $dark-gradient;
+            border-radius: 1em;
+            z-index: 10;
+            width: 100%;
+            text-align: center;
+        }
+
+        &-heading {
+            margin-bottom: 0.5em;
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: $main-color;
+        }
+
+        &-text {
+            margin-bottom: 0.5em;
+            font-size: 1.3rem;
+            color: $pure-white;
+        }
+
+        // &-btn {
+        //     margin-top: 1em;
+        //     padding: 0.8em;
+        //     width: 100%;
+        //     color: $pure-white;
+        //     background-color: $main-color;
+        //     border: none;
+        //     border-radius: 8px;
+        //     cursor: pointer;
+
+        //     &::before {
+        //         background-color: $secondary-color;
+        //     }
+        // }
+    }
+}
+
+// Team
+
+@media(max-width: 767px) {
+    .team.section-padding {
+        padding: 6em 0;
+    }
+}
+
+.team {
+    &__box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 2em;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 3px 3px 10px rgba(46, 46, 46, 0.18);
+        transition: transform .3s;
+        // background-color: #c50e0e;
+        &-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &:hover {
+            transform: scale(.95);
+        }
+    }
+
+    &__box-img {
+        // position: absolute;
+        // top: 8%;
+        // left: 55%;
+        // transform: translate(-50%, -50%);
+        // background-color: #214ace;
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &__box-quote {
+        margin-bottom: 1em;
+        font-size: 3rem;
+        color: $main-color;
+    }
+
+    &__box-text {
+        // background-color: #fff;
+        text-align: center;
+        margin-bottom: 1em;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: $secondary-color;
+        width: 100%;
+    }
+}
+.strongtext{
+    display: block;
+    text-align: center;
+    padding-bottom: 1em;
+    color: $main-color;
+
+}
+// NEWSLETTER
+.newsletter {
+    position: relative;
+    background-image: $dark-red-gradient, url('../img/map1.jpg');
+    overflow: hidden;
+
+    .white-block-left {
+        background-color: $dark;
+    }
+
+    &__form,
+    &__form-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__form-label {
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+    }
+
+    &__form-input {
+        @include contactForm;
+        width: 100%;
+    }
+
+    &__form-btn {
+        align-self: flex-end;
+        padding: 1em;
+        width: 100%;
+        max-width: 300px;
+        color: $pure-white;
+        border: none;
+        border-radius: 8px;
+        background-color: $main-color;
+        cursor: pointer;
+
+        &::before {
+            background-color: $secondary-color;
+        }
+    }
+
+}
+.candle-container{
+    position: relative;
+}
+.candle-box{
+    position: absolute;
+    bottom: -20%;
+    right: 20%;
+}
+
+// CONTACT
+.contact {
+    position: relative;
+    background-color: $light-white;
+    overflow: hidden;
+
+    .white-block-left {
+        background-color: $dark;
+    }
+
+    &__form,
+    &__form-top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__form-label {
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+    }
+
+    &__form-input {
+        @include contactForm;
+    }
+
+    &__form-textarea {
+        @include contactForm;
+
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+        min-height: 150px;
+    }
+
+    &__form-btn {
+        align-self: flex-end;
+        padding: 1em;
+        width: 100%;
+        max-width: 300px;
+        color: $pure-white;
+        border: none;
+        border-radius: 8px;
+        background-color: $main-color;
+        cursor: pointer;
+
+        &::before {
+            background-color: $secondary-color;
+        }
+    }
+
+}
+
+// FOOTER
+.footer {
+    color: $pure-white;
+    background-color: $dark;
+
+    .wrapper {
+        padding: 6em 2em 2em;
+    }
+
+    &__box {
+        font-size: 1.4rem;
+    }
+
+    &__box-desktop {
+        display: none;
+    }
+
+    &__box-title {
+        margin-bottom: 1em;
+        font-size: 3rem;
+        text-transform: uppercase;
+    }
+
+    &__box-social {
+        margin: 2em 0 1em;
+    }
+
+    &__box-link {
+        padding: 0 .3em;
+        font-size: 3.6rem;
+        color: $pure-white;
+        text-decoration: none;
+        transition: color .3s;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:hover {
+            color: $light-white;
+        }
+    }
+
+    &__bottom-text {
+        padding: 2em;
+        text-align: center;
+    }
+}
+
+
+// ================================
+// MEDIA
+// ================================
+
+@media(min-width: 576px) {
+    .about {
+        &__box {
+            flex-direction: row;
+            justify-content: space-between;
+
+            // &-text {
+            //     // width: 55%;
+
+            //     &--right {
+            //         text-align: right;
+            //     }
+            // }
+
+            // &-img {
+            //     // width: 40%;
+
+            //     &--right {
+            //         order: 1;
+            //     }
+            // }
+        }
+
+        // &__img {
+        //     margin-bottom: 0;
+        //     max-height: 300px;
+        // }
+    }
+
+    .offers {
+        &__option {
+            display: flex;
+            margin: 2em 0;
+            width: 100%;
+
+            // &-img {
+            //     // width: 50%;
+            //     // height: auto;
+
+            //     &--right {
+            //         order: 1;
+            //     }
+            // }
+
+            &-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            &-heading {
+                margin-bottom: 0.5em;
+                font-size: 3.6rem;
+            }
+
+            &-btn {
+                padding: 1em;
+            }
+        }
+    }
+}
+
+
+
+@media(min-width: 768px) {
+    .white-block {
+        height: 50px;
+        width: 45%;
+    }
+
+    .header {
+        &__heading {
+            font-size: 6.6rem;
+        }
+
+        &__text {
+            font-size: 2.2rem;
+        }
+
+        &__btn {
+            font-size: 4rem;
+        }
+    }
+
+    .about {
+        &__text {
+            font-size: 1.8rem;
+        }
+    }
+
+    .hero-img {
+        padding: 30rem 2em;
+
+        hr {
+            margin: 0 auto;
+            width: 70%;
+        }
+
+        &__text {
+            font-size: 2.2rem;
+        }
+    }
+
+    .game {
+        &__cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        &__card {
+            margin: 1em;
+            width: 45%;
+        }
+    }
+
+    .footer {
+        &__boxes {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__box-desktop {
+            display: block;
+        }
+
+        &__box {
+            margin: 0 2em;
+            width: 25%;
+
+            &:first-child {
+                width: 50%;
+            }
+        }
+
+        &__box-title {
+            font-size: 2.4rem;
+        }
+
+        &__box-list {
+            list-style: none;
+        }
+
+        &__box-list-item {
+            margin-bottom: 1em;
+
+            a {
+                color: $light-white;
+                text-decoration: none;
+            }
+        }
+
+    }
+
+}
+
+@media(min-width: 992px) {
+    .burger-btn {
+        top: 50px;
+        right: 50px;
+    }
+
+    .header {
+        background-image: url('../img/fantasy-4257828_1920.jpg');
+
+        &__heading {
+            font-size: 10rem;
+        }
+    }
+
+    .nav {
+        &__item {
+            font-size: 4.8rem;
+        }
+    }
+
+    .about {
+        &__box {
+            margin: 1.5em 0;
+
+            &-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                margin-bottom: 2.5em;
+            }
+        }
+
+        &__title {
+            font-size: 3.6rem;
+        }
+
+        &__text {
+            font-size: 2.2rem;
+        }
+    }
+
+    .hero-img {
+        padding: 40rem 2em;
+        background-image: $red-gradient, url('../img/eye.jpg');
+
+        &__title {
+            font-size: 7.2rem;
+        }
+
+        hr {
+            width: 60%;
+            max-width: 900px;
+        }
+    }
+
+    .offers {
+        background-image: $light-red-gradient, url('../img/map2.png');
+
+        &__option {
+            &-img {
+                object-fit: cover;
+                height: 300px;
+            }
+
+            &-text {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+}
+
+@media(min-width: 1100px) {
+    .game {
+        &__card {
+            width: 30%;
+        }
+    }
+}
+
+
+

@@ -1,0 +1,44 @@
+@mixin burgerBtn {
+    position: absolute;
+    right: 0;
+    height: 3px;
+    content: '';
+    background-color: $main-color;
+    transition: width .3s;
+}
+
+@mixin heroImages($bgImg) {
+    background-image: $dark-gradient, url($bgImg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@mixin islandCardStyles {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin contactForm {
+    margin-bottom: 2em;
+    background-color: $light-gold;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+}
+@keyframes burning {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 0, 0, 0.1), 0 0 40px rgba(255, 0, 0, 0.1);
+    }
+    30% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.7);
+    }
+    80% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.7);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 0, 0, 0.1), 0 0 40px rgba(255, 0, 0, 0.1);
+    }
+}
